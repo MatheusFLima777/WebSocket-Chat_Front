@@ -2,7 +2,7 @@
 
 <head>
     <title>Curso Chat</title>
-    <link rel="stylesheet" href="./Css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -18,15 +18,19 @@
 
     <div class="auth-area">
         <nav>
-            <button id="get-jwt-button">Obter token JWT ( teste )</button>
+            <button id="get-jwt-button">Obter token JWT</button>
+            <button id="get-ticket-button">Obter ticket</button>
+            <button id="connect-without-ticket-button">Conectar sem ticket</button>
+            <button id="connect-with-ticket-button">Conectar com ticket</button>
             <button id="logout-button">Sair</button>
         </nav>
         <p>Olá, <span class="user-name">...</span></p>
     </div>
 
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-    <script src="./js/auth.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
