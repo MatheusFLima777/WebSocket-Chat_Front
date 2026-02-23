@@ -1,7 +1,129 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background: #f4f6f9;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título */
+h1 {
+    background: #1e293b;
+    color: white;
+    padding: 16px 24px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Áreas */
+.checking-auth-area,
 .non-auth-area {
-    display: none;
+    padding: 20px;
+    text-align: center;
 }
 
 .auth-area {
-    display: none;
+    background: white;
+    padding: 12px 24px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Navbar */
+.auth-area nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Botões */
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#logout-button {
+    background: #ef4444;
+}
+
+#logout-button:hover {
+    background: #dc2626;
+}
+
+/* Chat Container */
+#chat-messages-div {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Mensagem padrão */
+.chat-message {
+    max-width: 60%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Mensagem recebida */
+.chat-message.received {
+    background: #e5e7eb;
+    align-self: flex-start;
+}
+
+/* Mensagem enviada */
+.chat-message.sent {
+    background: #2563eb;
+    color: white;
+    align-self: flex-end;
+}
+
+/* Área de envio */
+#chat-messages-div + div {
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Select */
+#chat-users-select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+}
+
+/* Input */
+#chat-message-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    outline: none;
+}
+
+#chat-message-input:focus {
+    border-color: #2563eb;
 }

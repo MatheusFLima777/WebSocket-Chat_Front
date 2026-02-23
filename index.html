@@ -2,7 +2,7 @@
 
 <head>
     <title>Curso Chat</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
 
 <body>
@@ -18,13 +18,21 @@
 
     <div class="auth-area">
         <nav>
-            <button id="get-jwt-button">Obter token JWT</button>
-            <button id="get-ticket-button">Obter ticket</button>
-            <button id="connect-without-ticket-button">Conectar sem ticket</button>
-            <button id="connect-with-ticket-button">Conectar com ticket</button>
-            <button id="logout-button">Sair</button>
+            <button id="connect-button">Conectar / Reconectar</button>
+            <button id= "logout-button">Sair</button>
         </nav>
+
         <p>Olá, <span class="user-name">...</span></p>
+    </div>
+    <div id="chat-messages-div">
+
+    </div>
+    <div>
+        <select id="chat-users-select">
+            <option>...</option>
+        </select>
+        <input type="text" id="chat-message-input" placeholder="Digite sua mensagem aqui..." />
+        <button id="send-chat-message-button">Enviar</button>
     </div>
 
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
