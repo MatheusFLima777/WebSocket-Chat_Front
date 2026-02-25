@@ -5,16 +5,14 @@
 // https://auth0.com/
 // ----------------------------------------------------------------------------
 let AUTH0_CONFIG = {
-    domain: "dev-wbvjopv68bizr1w7.us.auth0.com", // <-- TODO informar "domain"
-    clientId: "ztYuVbonuLWnGFFoGJWcFTt6198jUTn6", // <-- TODO informar "clientId"
+    domain: "dev-wbvjopv68bizr1w7.us.auth0.com",
+    clientId: "ztYuVbonuLWnGFFoGJWcFTt6198jUTn6",
     cacheLocation: "localstorage",
     useRefreshTokens: true
 }
 
 
 // ----------------------------------------------------------------------------
-// getAuth0Client
-//
 // Função que retorna uma Promise com um objeto auth0Client que dispõe
 // dos métodos necessários para operações relacionadas a autenticação.
 //
@@ -65,7 +63,7 @@ function login() {
             return auth0Client.loginWithRedirect(options)
         })
         .catch(function (error) {
-            console.log("login failed:", error)
+            log("login failed:", error)
         })
 }
 
@@ -91,7 +89,7 @@ function logout() {
             return auth0Client.logout(options)
         })
         .catch(function (error) {
-            console.log("logout failed:", error)
+            log("logout failed:", error)
         })
 }
 
