@@ -1,46 +1,77 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="PT-BR">
 <head>
-    <title>Curso Chat</title>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="shortcut icon" href="/assets/icons8-whatsapp-50.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login WebSocket</title>
+    <link rel="stylesheet" href="./css/main.css"/>
+    <link rel="shortcut icon" href="../WebSocket-Chat_Front/assets/icons8-whatsapp-50.png" type="image/x-icon">
 </head>
-
 <body>
-    <h1>Curso Chat</h1>
+    
 
-    <div class="checking-auth-area">
-        Verificando login...
-    </div>
 
-    <div class="non-auth-area">
-        <button id="login-button">Entrar</button>
-    </div>
+<main class="login-wrap">
+  <section class="login-card" aria-labelledby="titulo-login">
+    
+    <header class="logo-area">
+      <div class="logo-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 6h12M4 10h8M4 14h10"
+                stroke="#fff"
+                stroke-width="1.8"
+                stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="logo-label">Curso Chat</span>
+    </header>
 
-    <div class="auth-area">
-        <nav>
-            <button id="connect-button">Conectar / Reconectar</button>
-            <button id= "logout-button">Sair</button>
-        </nav>
+    <header>
+      <h1 id="titulo-login">Bem-vindo</h1>
+      <p class="subtitle">
+        Entre com sua conta para acessar o chat em tempo real.
+      </p>
+    </header>
 
-        <p>Olá, <span class="user-name">...</span></p>
-    </div>
-    <div id="chat-messages-div">
+    <section class="status-row" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Servidor online</span>
+    </section>
 
-    </div>
-    <div>
-        <select id="chat-users-select">
-            <option>...</option>
-        </select>
-        <input type="text" id="chat-message-input" placeholder="Digite sua mensagem aqui..." />
-        <button id="send-chat-message-button">Enviar</button>
-    </div>
+    <section>
+      <button id="login-button" type="button"> 
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 3l4 5-4 5M14 8H6M2 4v8"
+                stroke="#fff"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+        <span>Entrar</span>
+      </button>
+    </section>
 
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/backend.js"></script>
-    <script src="js/dom.js"></script>
-    <script src="js/main.js"></script>
+    <footer class="auth0-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"
+                stroke="currentColor"
+                stroke-width="1.5"/>
+        <path d="M8 12l3 3 5-5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"/>
+      </svg>
+      <span>Autenticação segura via Auth0</span>
+    </footer>
+
+  </section>
+</main>
+<script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+
+<script src="js/auth.js"></script>
+<script src="js/backend.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/dom.js"></script>
+<script src="js/main.js"></script>
 </body>
-
 </html>

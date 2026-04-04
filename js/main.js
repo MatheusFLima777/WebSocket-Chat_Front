@@ -23,7 +23,6 @@ const DEBUG = false
 // EVENTOS
 // ============================
 
-if (loginButton) loginButton.onclick = login
 if (logoutButton) logoutButton.onclick = logout
 if (connectButton) connectButton.onclick = connect
 
@@ -35,41 +34,43 @@ if (connectWithTicketButton) connectWithTicketButton.onclick = connectWithTicket
 if (sendButton) sendButton.onclick = send
 if (chatMessageInput) chatMessageInput.onkeyup = onKeyUp
 
-
-function log(...args) {
-    if (DEBUG) {
-        log(...args)
-    }
+// Login (apenas um handler)
+if (loginButton) {
+    loginButton.addEventListener("click", async () => {
+        const auth0 = await getAuth0Client();
+        await auth0.loginWithRedirect();
+    });
 }
+
 
 // ============================
 // INICIALIZAÇÃO AUTH0
 // ============================
 
-
-
 function init() {
-    handleRedirectCallback()
-        .then(function () { return isAuthenticated() })
+    isAuthenticated()
         .then(function (authenticated) {
 
+            // 🔥 evita loop
             if (authenticated) {
-                window.history.replaceState({}, document.title, "/")
+                if (!window.location.pathname.includes("chat.html")) {
+                    window.location.replace("chat.html")
+                    return
+                }
             }
 
             setDisplay("auth-area", authenticated)
             setDisplay("non-auth-area", !authenticated)
             setDisplay("checking-auth-area", false)
 
-            return authenticated && getUser()
+            return getUser()
         })
         .then(function (user) {
-
-            log("USER:", user)
             if (user) setText("user-name", user.name)
         })
         .catch(function (error) {
-            log("init failed:", error)
+            console.error(error)
+
             setDisplay("auth-area", false)
             setDisplay("non-auth-area", true)
             setDisplay("checking-auth-area", false)
@@ -176,6 +177,7 @@ function setText(className, text) {
         element.innerText = text
     })
 }
+
 function clearSelect(selectElement) {
     if (!selectElement) return
     selectElement.innerHTML = ""
@@ -259,4 +261,39 @@ function connectWithTicket() {
         })
 }
 
-init()
+
+// ============================
+// LOAD
+// ============================
+
+window.onload = async () => {
+    try {
+        const query = window.location.search;
+        const isRedirect = query.includes("code=") && query.includes("state=");
+
+        if (isRedirect) {
+            await handleRedirectCallback();
+
+            window.history.replaceState(
+                {},
+                document.title,
+                window.location.pathname
+            );
+        }
+
+        const authenticated = await isAuthenticated();
+
+        if (authenticated) {
+            if (!window.location.pathname.includes("chat.html")) {
+                window.location.replace("chat.html");
+                return;
+            }
+        }
+
+        init();
+
+    } catch (err) {
+        console.error(err);
+    }
+};
+
