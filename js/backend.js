@@ -1,11 +1,13 @@
 let ws = null
 
 
+const BASE_URL = window.location.hostname.includes("localhost")
+    ? "http://localhost:8080"
+    : "https://websocket-production-b4dd.up.railway.app";
+
 let BACKEND_CONFIG = {
-    restHost: "https://websocket-production-b4dd.up.railway.app",
-    wsHost: "wss://websocket-production-b4dd.up.railway.app",
-    pingInterval: 30000,
-    pongTolerance: 90000
+    restHost: BASE_URL,
+    wsHost: BASE_URL.replace("http", "ws"),
 }
 
 

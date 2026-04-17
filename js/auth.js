@@ -51,7 +51,7 @@ function logout() {
         .then(function (auth0Client) {
             return auth0Client.logout({
                 logoutParams: {
-                    returnTo: window.location.origin + "/chat.html"
+                    returnTo: window.location.origin
                 }
             });
         })
