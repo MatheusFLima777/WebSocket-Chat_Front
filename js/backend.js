@@ -8,6 +8,8 @@ const BASE_URL = window.location.hostname.includes("localhost")
 let BACKEND_CONFIG = {
     restHost: BASE_URL,
     wsHost: BASE_URL.replace("http", "ws"),
+    pingInterval: 10000,
+    pongTolerance: 15000
 }
 
 
@@ -17,7 +19,7 @@ let BACKEND_CONFIG = {
 
 function log(...args) {
     if (DEBUG) {
-        log(...args)
+        console.log(...args)
     }
 }
 
@@ -72,6 +74,12 @@ function connectWebSocket(onOpen, onClose, onMessage, autoReconnect) {
                 log("WebSocket conectado")
 
                 pingInterval = setInterval(function () {
+                    // Verifica se está aberto antes de qualquer ação
+                    if (ws.readyState !== WebSocket.OPEN) {
+                        clearInterval(pingInterval)
+                        return
+                    }
+
                     if (lastPong && (Date.now() - lastPong) > BACKEND_CONFIG.pongTolerance) {
                         clearInterval(pingInterval)
                         ws.close()
