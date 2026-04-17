@@ -2,8 +2,8 @@ let ws = null
 
 
 let BACKEND_CONFIG = {
-    restHost: "http://localhost:8080",
-    wsHost: "ws://localhost:8080",
+    restHost: "https://websocket-production-b4dd.up.railway.app",
+    wsHost: "wss://websocket-production-b4dd.up.railway.app",
     pingInterval: 30000,
     pongTolerance: 90000
 }
