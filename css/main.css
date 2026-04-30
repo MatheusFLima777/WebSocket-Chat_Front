@@ -1,104 +1,161 @@
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap');
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.login-wrap {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-tertiary);
+  padding: 2rem;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.login-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem 2.25rem 2.25rem;
+  width: 100%;
+  max-width: 380px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.75rem;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #1D9E75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* ← novo: evita encolher em telas pequenas */
+}
+
+.logo-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.3px;
+}
+
+.login-card h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.75rem;
+  line-height: 1.5;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.75rem;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1D9E75;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0; /* ← novo: ponto não encolhe */
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+#login-button {
+  width: 100%;
+  height: 42px;
+  background: #1D9E75;
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s, transform 0.1s;
+  touch-action: manipulation; /* ← novo: remove delay de 300ms no iOS/Android */
+  -webkit-tap-highlight-color: transparent; /* ← novo: remove highlight azul no tap */
+}
+
+#login-button:hover { background: #0F6E56; }
+#login-button:active { transform: scale(0.98); }
+
+.auth0-badge {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+.auth0-badge svg { opacity: 0.5; }
+
+
+/* ─── Tablet (≤768px) ─────────────────────────────────── */
+@media (max-width: 768px) {
   .login-wrap {
-    min-height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-background-tertiary);
-    padding: 2rem;
-    font-family: 'DM Sans', sans-serif;
+    padding: 1.5rem;
+    align-items: center; /* mantém centralizado verticalmente */
   }
+
   .login-card {
-    background: var(--color-background-primary);
-    border: 0.5px solid var(--color-border-tertiary);
-    border-radius: var(--border-radius-lg);
-    padding: 2rem 2.25rem 2.25rem;
-    width: 100%;
-    max-width: 380px;
+    padding: 1.75rem 1.75rem 2rem;
+    max-width: 400px; /* um pouco mais largo em tablets */
   }
-  .logo-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 1.75rem;
+}
+
+
+/* ─── Mobile (≤480px) ─────────────────────────────────── */
+@media (max-width: 480px) {
+  .login-wrap {
+    padding: 1rem;
+    min-height: 100dvh; /* ← usa dvh para descontar a barra do browser */
+    align-items: flex-start;
+    padding-top: max(2rem, env(safe-area-inset-top)); /* ← respeita notch/ilha */
   }
-  .logo-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: #1D9E75;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+  .login-card {
+    padding: 1.5rem 1.25rem 1.75rem;
+    border-radius: var(--border-radius-lg); /* mantém o mesmo */
+    max-width: 100%;
   }
-  .logo-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    letter-spacing: -0.3px;
-  }
+
   .login-card h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--color-text-primary);
-    margin-bottom: 4px;
-    letter-spacing: -0.3px;
+    font-size: 18px; /* leve redução para encaixar melhor */
   }
-  .subtitle {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-    margin-bottom: 1.75rem;
-    line-height: 1.5;
-  }
-  .status-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--color-text-secondary);
-    margin-bottom: 1.75rem;
-  }
-  .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #1D9E75;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  /* ESTE É O BOTÃO ADAPTADO — substitui o <button id="login-button"> original */
+
   #login-button {
-    width: 100%;
-    height: 42px;
-    background: #1D9E75;
-    color: #fff;
-    border: none;
-    border-radius: var(--border-radius-md);
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: background 0.15s, transform 0.1s;
+    height: 46px; /* ← área de toque maior (recomendado: mín 44px) */
+    font-size: 15px;
   }
-  #login-button:hover { background: #0F6E56; }
-  #login-button:active { transform: scale(0.98); }
-  .auth0-badge {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-size: 11px;
-    color: var(--color-text-tertiary);
-  }
-  .auth0-badge svg { opacity: 0.5; }
+}
